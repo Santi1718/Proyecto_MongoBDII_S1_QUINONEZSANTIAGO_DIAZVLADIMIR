@@ -211,8 +211,135 @@
   el cual guarda datos del director junto con sus responsabilidades.
   Las EPS pueden estar asociadas a múltiples pacientes.
 </p>
-
 <p>
   Este modelo permite visualizar un sistema hospitalario completo, distribuido en diferentes capas administrativas y clínicas,
   con relaciones estructuradas entre los actores del sistema de salud.
 </p>
+
+```mermaid
+erDiagram
+    MINSALUD ||--o{ EPS : regula
+    MINSALUD ||--o{ HOSPITAL : supervisa
+
+    EPS ||--o{ PACIENTE : afilia
+    PACIENTE }o--|| HISTORIA_CLINICA : tiene
+    PACIENTE }o--o{ CITA : agenda
+
+    HOSPITAL ||--o{ PERSONAL : emplea
+    HOSPITAL ||--o{ CAMA : contiene
+    HOSPITAL ||--o{ MEDICO : asigna
+    HOSPITAL ||--o{ SERVICIO : ofrece
+
+    PERSONAL ||--o{ MEDICO : incluye
+    PERSONAL ||--o{ ENFERMERO : incluye
+
+    MEDICO ||--o{ CITA : atiende
+    MEDICO ||--o{ HISTORIA_CLINICA : escribe
+    MEDICO ||--o{ TRATAMIENTO : receta
+
+    ENFERMERO ||--o{ CUIDADO : realiza
+
+    CITA ||--|| CONSULTORIO : se_realiza_en
+    CITA ||--|| HORA : ocurre_a
+
+    CONSULTORIO }o--|| HOSPITAL : pertenece_a
+
+    HISTORIA_CLINICA ||--o{ DIAGNOSTICO : contiene
+    HISTORIA_CLINICA ||--o{ TRATAMIENTO : incluye
+
+    TRATAMIENTO ||--o{ MEDICAMENTO : usa
+
+    CUIDADO ||--|| PACIENTE : dirigido_a
+
+    MEDICAMENTO {
+        string nombre
+        string presentacion
+        string concentracion
+    }
+
+    PACIENTE {
+        string id
+        string nombre
+        date nacimiento
+        string direccion
+    }
+
+    MEDICO {
+        string id
+        string nombre
+        string especialidad
+    }
+
+    ENFERMERO {
+        string id
+        string nombre
+        string turno
+    }
+
+    CITA {
+        string id
+        date fecha
+        string motivo
+    }
+
+    CONSULTORIO {
+        string id
+        int numero
+        string piso
+    }
+
+    HOSPITAL {
+        string id
+        string nombre
+        string direccion
+    }
+
+    EPS {
+        string id
+        string nombre
+    }
+
+    MINSALUD {
+        string nombre
+    }
+
+    HISTORIA_CLINICA {
+        string id
+        date fecha_apertura
+    }
+
+    DIAGNOSTICO {
+        string descripcion
+    }
+
+    TRATAMIENTO {
+        string indicaciones
+    }
+
+    CUIDADO {
+        string tipo
+        string observaciones
+    }
+
+    PERSONAL {
+        string id
+        string nombre
+        string rol
+    }
+
+    SERVICIO {
+        string nombre
+    }
+
+    CAMA {
+        string id
+        string estado
+        int numero
+    }
+
+    HORA {
+        string hora_inicio
+        string hora_fin
+    }
+```
+

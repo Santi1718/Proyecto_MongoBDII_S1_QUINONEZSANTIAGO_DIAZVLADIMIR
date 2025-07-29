@@ -254,10 +254,9 @@
   y favorece la consulta eficiente en contextos médicos, manteniendo una estructura flexible y escalable.
 </p>
 
-<h3 id="gráfica-1">Gráfica</h3>
+### Gráfica
 
-
-<div class="mermaid">
+```mermaid
 erDiagram
     MINSALUD ||--o{ EPS : regula
     MINSALUD ||--o{ HOSPITAL : supervisa
@@ -382,7 +381,7 @@ erDiagram
         string hora_inicio
         string hora_fin
     }
-</div>
+
 
 
 

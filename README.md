@@ -215,6 +215,48 @@
   Este modelo permite visualizar un sistema hospitalario completo, distribuido en diferentes capas administrativas y clínicas,
   con relaciones estructuradas entre los actores del sistema de salud.
 </p>
+<h2 id="construcción-del-modelo-lógico">Construcción del Modelo Lógico</h2>
+
+<h3 id="descripción-1">Descripción</h3>
+
+<p>
+  El modelo lógico de esta base de datos en MongoDB representa una estructura orientada a documentos, con relaciones referenciales suaves (no estrictas) mediante UUIDs.
+  El diseño se organiza en las siguientes entidades:
+</p>
+
+<ul>
+  <li>
+    <strong>Hospitales:</strong> Es una entidad principal que contiene atributos como <code>_id</code> (UUID), <code>nombre</code>, <code>dirección</code>, <code>teléfono</code>,
+    y un array de <code>áreas</code> que representa los distintos servicios ofrecidos.
+    Cada hospital puede estar relacionado con múltiples médicos y administrativos.
+  </li>
+
+  <li>
+    <strong>Médicos:</strong> Se relacionan con hospitales a través del campo <code>hospitalId</code>,
+    actuando como una clave foránea lógica hacia <code>hospitales._id</code>.
+    Incluyen atributos como <code>nombre</code>, <code>área</code>, <code>especialidad</code>, <code>registro_medico</code> y un array de <code>obligaciones</code>.
+  </li>
+
+  <li>
+    <strong>Administrativos:</strong> También se relacionan con hospitales mediante <code>hospitalId</code>
+    y almacenan datos como <code>nombre</code>, <code>cargo</code> y sus <code>obligaciones</code>, similares a los médicos.
+  </li>
+
+  <li>
+    <strong>Pacientes:</strong> Esta entidad incluye datos de identificación personal, <code>epsId</code> (referencia lógica a EPS),
+    y un array embebido <code>historia_clinica</code>.
+    Cada entrada de la historia clínica incluye los campos: <code>fecha</code>, <code>motivo</code>, <code>diagnóstico</code>, <code>tratamiento</code> y <code>medicoId</code> (como referencia lógica).
+  </li>
+</ul>
+
+<p>
+  En conjunto, el modelo lógico usa referencias por UUID para establecer relaciones entre documentos, evita <em>joins</em> complejos al embedir información relevante (como la historia clínica),
+  y favorece la consulta eficiente en contextos médicos, manteniendo una estructura flexible y escalable.
+</p>
+
+<h3 id="gráfica-1">Gráfica</h3>
+
+<div align="center">
 
 ```mermaid
 erDiagram
@@ -341,5 +383,5 @@ erDiagram
         string hora_inicio
         string hora_fin
     }
-```
+
 

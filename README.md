@@ -383,6 +383,10 @@ erDiagram
         string hora_inicio
         string hora_fin
     }
+    ```
+
+
+
 <h3 id="descripción-técnica-1">Descripción Técnica</h3>
 
 <p>

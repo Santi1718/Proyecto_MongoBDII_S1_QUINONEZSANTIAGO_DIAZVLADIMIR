@@ -383,5 +383,44 @@ erDiagram
         string hora_inicio
         string hora_fin
     }
+<h3 id="descripción-técnica-1">Descripción Técnica</h3>
 
+<p>
+  El modelo lógico general del sistema hospitalario define múltiples colecciones interrelacionadas en una base de datos MongoDB,
+  representadas por entidades clave.
+</p>
+
+<p>
+  La colección <strong>hospitales</strong> contiene identificadores únicos (<code>_id</code>), junto con datos como <code>nombre</code>, <code>direccion</code>, <code>telefono</code>
+  y una lista de <code>areas</code> que representan las unidades médicas disponibles.
+</p>
+
+<p>
+  La colección <strong>medicos</strong> incluye su propio <code>_id</code>, <code>nombre</code>, <code>hospitalId</code> (como referencia lógica al hospital donde labora),
+  <code>area</code>, <code>especialidad</code>, <code>registro_medico</code> y un arreglo de <code>obligaciones</code>.
+</p>
+
+<p>
+  De forma similar, la colección <strong>administrativos</strong> almacena funcionarios vinculados a un hospital mediante el campo <code>hospitalId</code>,
+  con sus respectivos <code>cargos</code> y <code>obligaciones</code>.
+</p>
+
+<p>
+  Por otro lado, la colección <strong>pacientes</strong> incluye campos como <code>_id</code>, <code>nombre</code>, <code>tipo_documento</code>,
+  <code>numero_documento</code>, <code>fecha_nacimiento</code>, <code>direccion</code>, <code>telefono</code>,
+  el identificador de su EPS (<code>epsId</code>), un arreglo de <code>obligaciones</code>,
+  y una subestructura llamada <code>historia_clinica</code>, que es una lista de objetos con los campos <code>fecha</code>, <code>motivo</code>,
+  <code>diagnostico</code>, <code>medicoId</code> (como referencia al médico tratante) y <code>tratamiento</code>.
+</p>
+
+<p>
+  Finalmente, la colección <strong>eps</strong> está compuesta por <code>_id</code>, <code>nombre</code>,
+  una lista de <code>responsabilidades</code> y un subdocumento embebido <strong>Director_EPS</strong>,
+  que a su vez incluye un <code>_id</code>, <code>nombre</code>, <code>tipo_de_usuario</code> y sus <code>obligaciones</code>.
+</p>
+
+<p>
+  Las relaciones entre entidades se manejan mediante referencias UUID, sin cambiar la estructura original del JSON,
+  permitiendo una integración lógica limpia y flexible entre hospitales, personal, pacientes y entes externos como las EPS.
+</p>
 

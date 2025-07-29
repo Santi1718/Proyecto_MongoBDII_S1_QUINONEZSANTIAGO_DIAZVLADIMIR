@@ -256,9 +256,8 @@
 
 <h3 id="gráfica-1">Gráfica</h3>
 
-<div align="center">
 
-```mermaid
+<div class="mermaid">
 erDiagram
     MINSALUD ||--o{ EPS : regula
     MINSALUD ||--o{ HOSPITAL : supervisa
@@ -383,7 +382,7 @@ erDiagram
         string hora_inicio
         string hora_fin
     }
-    ```
+</div>
 
 
 

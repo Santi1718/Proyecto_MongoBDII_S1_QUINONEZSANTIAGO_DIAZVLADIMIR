@@ -173,7 +173,7 @@
 <h3 id="gráfica">Gráfica</h3>
 
 <div align="center">
-  <img src="./salud.drawio (1).png" alt="Modelo Conceptual" width="800px">
+  <img src="./img/salud.drawio (1).png" alt="Modelo Conceptual" width="800px">
   <br><br>
   <a href="https://drive.google.com/file/d/1TrpyUwY_rDEoA1gYqghtMEs9JYpaQpoM/view?usp=sharing" target="_blank">🔗 Ver en Draw.io</a>
 </div>
@@ -254,133 +254,14 @@
   y favorece la consulta eficiente en contextos médicos, manteniendo una estructura flexible y escalable.
 </p>
 
-### Gráfica
+<h3 id="gráfica-1">Gráfica</h3>
 
-```mermaid
-erDiagram
-    MINSALUD ||--o{ EPS : regula
-    MINSALUD ||--o{ HOSPITAL : supervisa
+<div align="center">
+  <img src="./img/mermaid.png" alt="Modelo Conceptual" width="800px">
+  <br><br>
+  <a href="https://mermaid.live/edit#pako:eNqlVttuozAQ_RXk56RK7w1viLBbpAQqSPdhFSlyYUKsBRsZU22b5N_XJtwKpJvd8hTbx2cuZ8aTHQpYCEhHwGcERxwnK6rJb2E7vjF_nmn7_XjMdpr15Gu6xiHKYzyMeHT9J3tpzCUsy1PgrySTyCNW3S5hT4ZpW87SkjC8ITEp2ertAxuP93vt0faXrmcba3NuO7ZpSLggQGEALUlNaVgRRkDD2mjtUGXZ8nzXKRyEJI0BD8NMY6G4AkZbBrughTWzTVeZzEhETzD5lvfDNm0FYxsOAVSe1Z502QgN4vwNhlGW883yFpb3AVhqcSSoIiizofwPYQgxkF3IAk5eBtFLz1gaC5Vwt6iBAESjbO1UZfzZnhmzIxDH5L1GFl4pkFTXdB3_ea5cUMAM1iV2DQPgR9dTDrIg5xzWDV-LoyqapgRlAQqpXtC60Au69HhmG98d118eJejofuLOx5R01GgfthU2FiU-bzqjSlcZa6s7QsJJRELWBNAm2R231JcJTmikUZa8cOhtpxwyoAIHhNHeoQw2kIe8dXqoi7RypW-KhH-1HmIBGpW8iUymYD28jA6CAatl5f2XzXIbshQCIuspxGGHvanWrxgQOaesw1wU7OekRUo2EGxxD5YwQV57lK0C_5yZUKHRPAHez3NKsi5v3SVfycEp_dRL_8-8jfrVTNmdh--157kKrLF6IHKOO4Ttt6DPFRaPZDoQdrvlB3ygIQmKHoOsK3LZ__1LgqR9OdlLJifrMFU9L76iK2dxh7aeYmdqUszPs1yATOCQnS7jVsV6Q5RbxvGaUCKzMXy2IZVOaIQiTkKkC57DCEkbCVZLVLCukNhCAiuky58h5r9WaEXVnRTTn4wl1TXO8miL9A2OM7nKU1VP5b-mGqJGLjdZTgXSr-4KCqTv0G-5epheXF9eTic3l5PpZDpCb2rv4ub6_ubh9vp2cjW9u7q7P4zQe2FycvFwf3v4A41k2uo" target="_blank">🔗 Ver en Draw.io</a>
+</div>
 
-    EPS ||--o{ PACIENTE : afilia
-    PACIENTE }o--|| HISTORIA_CLINICA : tiene
-    PACIENTE }o--o{ CITA : agenda
-
-    HOSPITAL ||--o{ PERSONAL : emplea
-    HOSPITAL ||--o{ CAMA : contiene
-    HOSPITAL ||--o{ MEDICO : asigna
-    HOSPITAL ||--o{ SERVICIO : ofrece
-
-    PERSONAL ||--o{ MEDICO : incluye
-    PERSONAL ||--o{ ENFERMERO : incluye
-
-    MEDICO ||--o{ CITA : atiende
-    MEDICO ||--o{ HISTORIA_CLINICA : escribe
-    MEDICO ||--o{ TRATAMIENTO : receta
-
-    ENFERMERO ||--o{ CUIDADO : realiza
-
-    CITA ||--|| CONSULTORIO : se_realiza_en
-    CITA ||--|| HORA : ocurre_a
-
-    CONSULTORIO }o--|| HOSPITAL : pertenece_a
-
-    HISTORIA_CLINICA ||--o{ DIAGNOSTICO : contiene
-    HISTORIA_CLINICA ||--o{ TRATAMIENTO : incluye
-
-    TRATAMIENTO ||--o{ MEDICAMENTO : usa
-
-    CUIDADO ||--|| PACIENTE : dirigido_a
-
-    MEDICAMENTO {
-        string nombre
-        string presentacion
-        string concentracion
-    }
-
-    PACIENTE {
-        string id
-        string nombre
-        date nacimiento
-        string direccion
-    }
-
-    MEDICO {
-        string id
-        string nombre
-        string especialidad
-    }
-
-    ENFERMERO {
-        string id
-        string nombre
-        string turno
-    }
-
-    CITA {
-        string id
-        date fecha
-        string motivo
-    }
-
-    CONSULTORIO {
-        string id
-        int numero
-        string piso
-    }
-
-    HOSPITAL {
-        string id
-        string nombre
-        string direccion
-    }
-
-    EPS {
-        string id
-        string nombre
-    }
-
-    MINSALUD {
-        string nombre
-    }
-
-    HISTORIA_CLINICA {
-        string id
-        date fecha_apertura
-    }
-
-    DIAGNOSTICO {
-        string descripcion
-    }
-
-    TRATAMIENTO {
-        string indicaciones
-    }
-
-    CUIDADO {
-        string tipo
-        string observaciones
-    }
-
-    PERSONAL {
-        string id
-        string nombre
-        string rol
-    }
-
-    SERVICIO {
-        string nombre
-    }
-
-    CAMA {
-        string id
-        string estado
-        int numero
-    }
-
-    HORA {
-        string hora_inicio
-        string hora_fin
-    }
 
 
 
